@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Glowy Skincare Shop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+ 
+  <link rel="stylesheet" href="mini.css">
+</head>
+<body>
+  
+    <nav>
+      <div class="logo">Glowy</div>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#products-section">Products</a></li>
+        <li><a href="#about-section">About</a></li>
+        <li><a href="#contact-section">Contact</a></li>
+        <li><a href="http://127.0.0.1:5500/frm.html">Login</a></li>
+        <li class="nav-icon">
+          <a href="#" id="view-wishlist-btn">
+            <i class="fas fa-heart"></i>
+            <span class="icon-badge" id="wishlist-count">0</span>
+          </a>
+        </li>
+        <li class="nav-icon">
+          <a href="#" id="view-cart-btn">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="icon-badge" id="cart-count">0</span>
+          </a>
+        </li>
+        <li class="nav-icon">
+          <a href="#" id="search-btn">
+            <i class="fas fa-search"></i>
+          </a>
+        </li>
+        <li class="nav-icon">
+          <div id="search-container">
+            <input type="text" id="search-input" placeholder="Search products...">
+            <button id="close-search">×</button>
+          </div>
+        </li>
+      </ul>
+    </nav>
+    
+    
+  <!-- Enhanced carousel -->
+  <div class="carousel-container">
+    <div class="carousel-slide active" style="background-image: url('https://www.shankara.in/cdn/shop/articles/13_Skincare_Tips_for_Dry_Skin___From_Cleansing_to_Moisturizing.jpg?v=1726823781&width=2048')">
+      <div class="carousel-content">
+        <h1>Glowy Skincare</h1>
+        <p>Your journey to radiant skin starts here!</p>
+      </div>
+    </div>
+    <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')">
+      <div class="carousel-content">
+        <h1>Natural Ingredients</h1>
+        <p>Carefully selected for your skin's health</p>
+      </div>
+    </div>
+    <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1556228578-0d85b1a4d571?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')">
+      <div class="carousel-content">
+        <h1>Premium Quality</h1>
+        <p>Experience the difference with our products</p>
+      </div>
+    </div>
+    <div class="carousel-dots">
+      <span class="dot active" onclick="currentSlide(0)"></span>
+      <span class="dot" onclick="currentSlide(1)"></span>
+      <span class="dot" onclick="currentSlide(2)"></span>
+    </div>
+  </div>
+
+  <!-- Cart and wishlist containers -->
+  <div id="cart-container">
+    <h3>Your Cart</h3>
+    <div id="cart-items"></div>
+  </div>
+
+  <div id="wishlist-container">
+    <h3>Your Wishlist</h3>
+    <div id="wishlist-items"></div>
+  </div>
+
+  <!-- Products Section -->
+    <div class="container">
+      <section class="intro" id="products-section">
+        <h2>Discover Our Products</h2>
+        <p>Explore our collection of natural and effective skincare products designed to nourish and rejuvenate your skin.</p>
+      </section>
+    
+      <!-- Sort controls -->
+      <div class="sort-controls">
+        <label for="sort-select">Sort by price:</label>
+        <select id="sort-select" onchange="sortProducts(this.value)">
+          <option value="default">Default</option>
+          <option value="low-to-high">Price: Low to High</option>
+          <option value="high-to-low">Price: High to Low</option>
+        </select>
+      </div>
+      
+      <section class="products">
+        <div class="product">
+          <span class="heart-icon" onclick="toggleLike(this, 'Hydrating Serum', 19.44, 'https://i.pinimg.com/736x/16/41/e7/1641e7a483cc676a7357264eab033153.jpg')">♥</span>
+    
+          <img src="https://i.pinimg.com/736x/16/41/e7/1641e7a483cc676a7357264eab033153.jpg" alt="Hydrating Serum" />
+          <h3>Hydrating Serum</h3>
+          <p>Deeply hydrates and plumps your skin for a youthful glow.</p>
+          <p>Rating: ⭐⭐⭐⭐⭐</p>
+          <h4>MRP:- $19.44</h4>
+          
+          <button class="btn" onclick="addToCart('Hydrating Serum', 19.44, 'https://i.pinimg.com/736x/16/41/e7/1641e7a483cc676a7357264eab033153.jpg')">Add to Cart</button>
+        </div>
+        
+        <div class="product">
+          <span class="heart-icon" onclick="toggleLike(this, 'Vitamin C Cream', 15.40, 'https://i.pinimg.com/736x/37/1b/7f/371b7f3f6b15d7fa43cee8f936cb14e1.jpg')">♥</span>
+          <img src="https://i.pinimg.com/736x/37/1b/7f/371b7f3f6b15d7fa43cee8f936cb14e1.jpg" alt="Vitamin C Cream" />
+          <h3>Vitamin C Cream</h3>
+          <p>Brightens and evens skin tone with powerful antioxidants.</p>
+          <p>Rating: ⭐⭐⭐⭐⭐</p>
+          <h4>MRP:- $15.40</h4>
+          
+          <button class="btn" onclick="addToCart('Vitamin C Cream', 15.40, 'https://i.pinimg.com/736x/37/1b/7f/371b7f3f6b15d7fa43cee8f936cb14e1.jpg')">Add to Cart</button>
+        </div>
+        
+        <div class="product">
+          <span class="heart-icon" onclick="toggleLike(this, 'Night Repair Oil', 19.63, 'https://i.pinimg.com/474x/22/71/d0/2271d08ef52b888028d51f271e7bef30.jpg')">♥</span>
+    
+          <img src="https://i.pinimg.com/474x/22/71/d0/2271d08ef52b888028d51f271e7bef30.jpg" alt="Night Repair Oil" />
+            <h3>Night Repair Oil</h3>
+            <p>Deeply hydrates and plumps your skin for a youthful glow.</p>
+            <p>Rating: ⭐⭐⭐⭐⭐</p>
+            <h4>MRP:- $19.63</h4>
+          
+          <button class="btn" onclick="addToCart('Night Repair Oil', 19.63, 'https://i.pinimg.com/474x/22/71/d0/2271d08ef52b888028d51f271e7bef30.jpg')">Add to Cart</button>
+        </div>
+    
+        <div class="product">
+          <span class="heart-icon" onclick="toggleLike(this, 'Moisturizer', 11.21, 'https://i.pinimg.com/474x/22/33/92/223392834c288825654bdd4124d0193d.jpg')">♥</span>
+    
+          <img src="https://i.pinimg.com/474x/22/33/92/223392834c288825654bdd4124d0193d.jpg" alt="Moisturizer">
+          
+              <h3>Moisturizer</h3>
+              <p>Helps prevent dry skin by increasing the skin's water content and restoring its protective barrier.</p>
+              <p>Rating: ⭐⭐⭐⭐⭐</p>
+              <h4>MRP:- $11.21</h4>
+            <button class="btn" onclick="addToCart('Moisturizer', 11.21, 'https://i.pinimg.com/474x/22/33/92/223392834c288825654bdd4124d0193d.jpg')">Add to Cart</button>
+          </div>
+          
+  
+  
+            <div class="product">
+              <span class="heart-icon" onclick="toggleLike(this, 'Sunscreen', 18.6, 'https://i.pinimg.com/736x/d3/4c/09/d34c09b773ca1f1512a02b72e460573c.jpg')">♥</span>
+    
+              <img src="https://i.pinimg.com/736x/d3/4c/09/d34c09b773ca1f1512a02b72e460573c.jpg" alt="Sunscreen">
+              
+                <h3>Sunscreen</h3>
+                <p>Protects your skin from the sun's ultraviolet (UV) radiation.</p>
+                <p>Rating: ⭐⭐⭐⭐⭐</p>
+                <h4>MRP:- $18.6</h4>
+              <button class="btn" onclick="addToCart('Sunscreen', 18.6, 'https://i.pinimg.com/736x/d3/4c/09/d34c09b773ca1f1512a02b72e460573c.jpg')">Add to Cart</button>
+            </div>
+  
+            <div class="product">
+              <span class="heart-icon" onclick="toggleLike(this, 'Toner', 9.89, 'https://i.pinimg.com/736x/39/e1/8b/39e18b985bc0b545b9017248872eef9b.jpg')">♥</span>
+    
+              <img src="https://i.pinimg.com/736x/39/e1/8b/39e18b985bc0b545b9017248872eef9b.jpg" alt="Toner">
+              
+                <h3>Toner</h3>
+                <p>Helps cleanse and balance the skin's pH.</p>
+                <p>Rating: ⭐⭐⭐⭐⭐</p>
+                <h4>MRP:- $9.89</h4>
+              <button class="btn" onclick="addToCart('Toner', 9.89, 'https://i.pinimg.com/736x/39/e1/8b/39e18b985bc0b545b9017248872eef9b.jpg')">Add to Cart</button>
+            </div>
+  
+            <div class="product">
+              <span class="heart-icon" onclick="toggleLike(this, 'Lip Balm', 6.61, 'https://i.pinimg.com/736x/b3/32/34/b33234c1d564526e716febd8c4430924.jpg')">♥</span>
+    
+              <img src="https://i.pinimg.com/736x/b3/32/34/b33234c1d564526e716febd8c4430924.jpg" alt="Lip Balm">
+             
+                <h3>Lip Balm</h3>
+                <p>It hydrates the lip for long period and makes the lip look pink.</p>
+                <p>Rating: ⭐⭐⭐⭐⭐</p>
+                <h4>MRP:- $6.61</h4>
+              <button class="btn" onclick="addToCart('Lip Balm', 6.61, 'https://i.pinimg.com/736x/b3/32/34/b33234c1d564526e716febd8c4430924.jpg')">Add to Cart</button>
+            </div>
+  
+  
+            <div class="product">
+              <span class="heart-icon" onclick="toggleLike(this, 'Cleanser', 10.44, 'https://i.pinimg.com/736x/77/03/ef/7703efd0b34495fa24df970aca6f93b2.jpg')">♥</span>
+    
+              <img src="https://i.pinimg.com/736x/77/03/ef/7703efd0b34495fa24df970aca6f93b2.jpg" alt="Cleanser">
+              
+                <h3>Cleanser</h3>
+                <p>Removes dirt, makeup, oil, sweat, and dead skin cells from your skin.</p>
+                <p>Rating: ⭐⭐⭐⭐⭐</p>
+                <h4>MRP:- $10.44</h4>
+              <button class="btn" onclick="addToCart('Cleanser', 10.44, 'https://i.pinimg.com/736x/77/03/ef/7703efd0b34495fa24df970aca6f93b2.jpg')">Add to Cart</button>
+            </div>
+
+            <div class="product">
+              <span class="heart-icon" onclick="toggleLike(this, 'Green Tea Mattifying Moisturizer', 9.44, 'https://i.pinimg.com/474x/89/45/dd/8945dd5878ed716a6fd1b8d618e03f8c.jpg')">♥</span>
+    
+              <img src="https://i.pinimg.com/474x/89/45/dd/8945dd5878ed716a6fd1b8d618e03f8c.jpg" alt="<Mmoisturizer">
+              
+                <h3>Mattifying Moisturizer</h3>
+                <p>Fights Pimples | Controls Excess Oil | Mattifies Skin</p>
+                <p>Rating: ⭐⭐⭐⭐⭐</p>
+                <h4>MRP:- $9.44</h4>
+              <button class="btn" onclick="addToCart('Green Tea Mattifying Moisturizer', 9.44, 'https://i.pinimg.com/474x/89/45/dd/8945dd5878ed716a6fd1b8d618e03f8c.jpg')">Add to Cart</button>
+            </div>
+
+            <div class="product">
+              <span class="heart-icon" onclick="toggleLike(this, 'Sunscreen with 1% Niacinamide with SPF 50+++ PA(50g)', 10.54, 'https://i.pinimg.com/474x/d7/ac/56/d7ac56f649cd58b56b20d4af78fdc2fe.jpg')">♥</span>
+    
+              <img src="https://i.pinimg.com/474x/d7/ac/56/d7ac56f649cd58b56b20d4af78fdc2fe.jpg" alt="nSunscreen">
+              
+                <h3>1% Niacinamide Sunscreen with SPF 50++ PA(50g) </h3>
+                <p> Brightens, No White Cast and Dermat-Tested.</p>
+                <p>Rating: ⭐⭐⭐⭐⭐</p>
+                <h4>MRP:- $10.54</h4>
+              <button class="btn" onclick="addToCart('Sunscreen with 1% Niacinamide with SPF 50+++ PA(50g)', 10.54, 'https://i.pinimg.com/474x/d7/ac/56/d7ac56f649cd58b56b20d4af78fdc2fe.jpg')">Add to Cart</button>
+            </div>
+
+            <div class="product">
+              <span class="heart-icon" onclick="toggleLike(this, 'Vitamin C Sunscreen with SPF 50+++ PA(50g)', 11.54, 'https://i.pinimg.com/474x/75/ae/d2/75aed20c6d86d75b804a060ec3a4e3bd.jpg')">♥</span>
+    
+              <img src="https://i.pinimg.com/474x/75/ae/d2/75aed20c6d86d75b804a060ec3a4e3bd.jpg" alt="vcsunscreen">
+              
+                <h3>Vitamin c Sunscreen with SPF 50++ PA(50g)</h3>
+                <p> For Oily, Combination & Dry Skin Type(50g) </p>
+                <p>Rating: ⭐⭐⭐⭐⭐</p>
+                <h4>MRP:- $11.54</h4>
+              <button class="btn" onclick="addToCart('Vitamin C Sunscreen with SPF 50+++ PA(50g)', 11.54, 'https://i.pinimg.com/474x/75/ae/d2/75aed20c6d86d75b804a060ec3a4e3bd.jpg')">Add to Cart</button>
+            </div>
+
+            <div class="product">
+              <span class="heart-icon" onclick="toggleLike(this, 'RiceWater Toner', 5.34, 'https://i.pinimg.com/474x/65/32/4b/65324be0e8f6938397fac5def7aab123.jpg')">♥</span>
+    
+              <img src="https://i.pinimg.com/474x/65/32/4b/65324be0e8f6938397fac5def7aab123.jpg" alt="Rtoner">
+              
+                <h3>RiceWater Toner</h3>
+                <p>It Brigthens the skin</p>
+                <p>Rating: ⭐⭐⭐⭐⭐</p>
+                <h4>MRP:- $5.34</h4>
+              <button class="btn" onclick="addToCart('RiceWater Toner', 5.34, 'https://i.pinimg.com/474x/65/32/4b/65324be0e8f6938397fac5def7aab123.jpg')">Add to Cart</button>
+            </div>
+
+            <div class="product">
+              <span class="heart-icon" onclick="toggleLike(this, 'Hydralouric Acid Infused Serum', 16.44, 'https://m.media-amazon.com/images/I/51dyKxcQAaL._SL1300_.jpg')">♥</span>
+    
+              <img src="https://m.media-amazon.com/images/I/51dyKxcQAaL._SL1300_.jpg" alt="HAserum">
+              
+                <h3>Hydralouric Acid Infused Serum</h3>
+                <p>Its clears the skin and even's the tone.</p>
+                <p>Rating: ⭐⭐⭐⭐⭐</p>
+                <h4>MRP:- $16.44</h4>
+              <button class="btn" onclick="addToCart('Hydralouric Acid Infused Serum', 16.44, 'https://m.media-amazon.com/images/I/51dyKxcQAaL._SL1300_.jpg')">Add to Cart</button>
+            </div>
+
+            <div class="product">
+              <span class="heart-icon" onclick="toggleLike(this, 'Azelic Acid Serum', 15.44, 'https://i.pinimg.com/736x/b9/74/85/b974850593ff481fb28f1c3d435773ed.jpg')">♥</span>
+    
+              <img src="https://i.pinimg.com/736x/b9/74/85/b974850593ff481fb28f1c3d435773ed.jpg" alt="AzelicSerum">
+              
+                <h3>Azelic Acid Serum</h3>
+                <p>Reduces dark spots and best for acne-prone skin.</p>
+                <p>Rating: ⭐⭐⭐⭐⭐</p>
+                <h4>MRP:- $15.44</h4>
+              <button class="btn" onclick="addToCart('Azelic Acid Serum', 15.44, 'https://i.pinimg.com/736x/b9/74/85/b974850593ff481fb28f1c3d435773ed.jpg')">Add to Cart</button>
+            </div>
+
+            <div class="product">
+              <span class="heart-icon" onclick="toggleLike(this, 'Niacinamide Serum', 15.11, 'https://i.pinimg.com/474x/f2/9c/63/f29c633c42c7931a4ec66280876c84c9.jpg')">♥</span>
+    
+              <img src="https://i.pinimg.com/474x/f2/9c/63/f29c633c42c7931a4ec66280876c84c9.jpg" alt="Nserum">
+              
+                <h3>Niacinamide Serum</h3>
+                <p>it brightens your skin and helps you for the glow</p>
+                <p>Rating: ⭐⭐⭐⭐⭐</p>
+                <h4>MRP:- $10.44</h4>
+              <button class="btn" onclick="addToCart('Niacinamide Serum', 15.11, 'https://i.pinimg.com/474x/f2/9c/63/f29c633c42c7931a4ec66280876c84c9.jpg')">Add to Cart</button>
+            </div>
+
+            <div class="product">
+              <span class="heart-icon" onclick="toggleLike(this,'Glycolic Acid Toner', 17.44, 'https://i.pinimg.com/736x/3c/ab/63/3cab63d61e1d02e0fe935638e361de92.jpg')">♥</span>
+    
+              <img src="https://i.pinimg.com/736x/3c/ab/63/3cab63d61e1d02e0fe935638e361de92.jpg" alt="Gtoner">
+              
+                <h3>Glycolic Acid Toner</h3>
+                <p>It gives Radiant Skin, Brightening, Exfoliation.</p>
+                <p>Rating: ⭐⭐⭐⭐⭐</p>
+                <h4>MRP:- $17.44</h4>
+              <button class="btn" onclick="addToCart('Glycolic Acid Toner', 17.44, 'https://i.pinimg.com/736x/3c/ab/63/3cab63d61e1d02e0fe935638e361de92.jpg')">Add to Cart</button>
+            </div>
+
+            <div class="product">
+              <span class="heart-icon" onclick="toggleLike(this, 'LipBalm', 5.68, 'https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcTEJRRjIIB_hIjz92KdG4wXWCxjj8X1qQqhThdDK0OtJh0QbuBHQOl4PDaJkAfPJ0QLgr4AhewcZiBUM0MmhDC0sn9-AkqYYzBn14RF5wGlzAn0pKb4XMYsJ38b')">♥</span>
+    
+              <img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcTEJRRjIIB_hIjz92KdG4wXWCxjj8X1qQqhThdDK0OtJh0QbuBHQOl4PDaJkAfPJ0QLgr4AhewcZiBUM0MmhDC0sn9-AkqYYzBn14RF5wGlzAn0pKb4XMYsJ38b" alt="nlipbalm">
+              
+                <h3>LipBalm</h3>
+                <p>nourishes the lips with removes hyperpigmentation</p>
+                <p>Rating: ⭐⭐⭐⭐⭐</p>
+                <h4>MRP:- $5.68</h4>
+              <button class="btn" onclick="addToCart('LipBalm', 5.68, 'https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcTEJRRjIIB_hIjz92KdG4wXWCxjj8X1qQqhThdDK0OtJh0QbuBHQOl4PDaJkAfPJ0QLgr4AhewcZiBUM0MmhDC0sn9-AkqYYzBn14RF5wGlzAn0pKb4XMYsJ38b')">Add to Cart</button>
+            </div>
+
+            <div class="product">
+              <span class="heart-icon" onclick="toggleLike(this, 'Body Lotion', 15.03, 'https://i.pinimg.com/474x/5a/1b/06/5a1b068d02e1d4c2513dd290e7930857.jpg')">♥</span>
+    
+              <img src="https://i.pinimg.com/474x/5a/1b/06/5a1b068d02e1d4c2513dd290e7930857.jpg" alt="Bodylotion">
+              
+                <h3>Body Lotion</h3>
+                <p>Nourishes the skin by saying no to dryness and smothens the skin</p>
+                <p>Rating: ⭐⭐⭐⭐⭐</p>
+                <h4>MRP:- $15.03</h4>
+              <button class="btn" onclick="addToCart('Body Lotion', 15.03, 'https://i.pinimg.com/474x/5a/1b/06/5a1b068d02e1d4c2513dd290e7930857.jpg')">Add to Cart</button>
+            </div>
+  
+            <div class="product">
+              <span class="heart-icon" onclick="toggleLike(this, 'Glow Serum', 14.03, 'https://i.pinimg.com/736x/c2/0f/91/c20f910cf9c355e95916d4c416a42fd0.jpg')">♥</span>
+    
+              <img src="https://i.pinimg.com/736x/c2/0f/91/c20f910cf9c355e95916d4c416a42fd0.jpg" alt="Glowserum">
+              
+                <h3>Glow Serum </h3>
+                <p>It Reduces Dark Spots,Brightens the skin and hydrates the skin</p>
+                <p>Rating: ⭐⭐⭐⭐⭐</p>
+                <h4>MRP:- $14.82</h4>
+              <button class="btn" onclick="addToCart('Glow Serum', 14.82, 'https://i.pinimg.com/736x/c2/0f/91/c20f910cf9c355e95916d4c416a42fd0.jpg')">Add to Cart</button>
+            </div>
+  
+            <div class="product">
+              <span class="heart-icon" onclick="toggleLike(this, 'Combo Pack', 30.04, 'https://i.pinimg.com/736x/39/ea/ec/39eaec6021f27c2ef48b5d051f1fc201.jpg')">♥</span>
+    
+              <img src="https://i.pinimg.com/736x/39/ea/ec/39eaec6021f27c2ef48b5d051f1fc201.jpg" alt="Combopack">
+              
+                <h3>Combo Pack</h3>
+                <p>(Cleanser,Toner,Serum,Moisturizer,Sunscreen)</p>
+                <p>Rating: ⭐⭐⭐⭐⭐</p>
+                <h4>MRP:- $40.04</h4>
+              <button class="btn" onclick="addToCart('Combo Pack', 30.04, 'https://i.pinimg.com/736x/39/ea/ec/39eaec6021f27c2ef48b5d051f1fc201.jpg')">Add to Cart</button>
+            </div>
+  
+        </section>
+      </div>
+
+  <!-- Back to top button -->
+  <div class="back-to-top">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+
+  <!-- Enhanced footer -->
+  <footer>
+    <div id="about-section">
+      <h3>About Us</h3>
+      <p>Glowy Skincare is dedicated to providing high-quality, natural skincare products that help you achieve radiant, healthy skin. Our products are carefully formulated with the finest ingredients to nourish and rejuvenate your skin.</p>
+    </div>
+    <div id="contact-section">
+      <h3>Contact us | +919324536756</h3>
+    <div class="social-links">
+      <a href="https://www.facebook.com/yourprofile" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a>
+      <a href="https://www.instagram.com/?flo=true" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+      <a href="https://www.twitter.com/yourprofile" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
+    </div>
+    <div class="column">
+        <h3>Help</h3>
+        <ul>
+            <li>Contact Us</li>
+            <li>Policies</li>
+            <li>FAQs</li>
+            <li>Track Your Order</li>
+            <li>Return Order</li>
+        </ul>
+    </div>
+  </footer>
+  <script src="mini.js"></script>
+  </body>
+  </html>

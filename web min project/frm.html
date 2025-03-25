@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: url('https://i.pinimg.com/736x/4b/c6/02/4bc602a04d01f726f02e9a44e70e398e.jpg') no-repeat center center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .login-container {
+            background: url('https://i.pinimg.com/736x/4b/c6/02/4bc602a04d01f726f02e9a44e70e398e.jpg') no-repeat center center/cover;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .login-container h2 {
+            margin-bottom: 20px;
+            font-size: 2rem;
+            color: black;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: black;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .input-group .error {
+            color: red;
+            font-size: 0.8rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .btn-primary {
+            background: #007bff;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: black;
+        }
+
+        .links {
+            margin-top: 20px;
+        }
+
+        .links a {
+            color: #007bff;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <div class="input-group">
+                <label for="fname">First Name:</label>
+                <input type="text" id="fname" name="fname" required>
+                <label for="lname">Last Name:</label>
+                <input type="text" id="lname" name="lname" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" placeholder="Enter your email(varshitha@gmail.com)" required>
+                <div id="emailError" class="error">Please enter a valid email address</div>
+                <label for="mobile">Mobile Number:</label>
+                <input type="tel" id="mobile" placeholder="Enter 10-digit mobile number" required maxlength="10">
+                <div id="mobileError" class="error">Please enter a 10-digit mobile number</div>
+            </div>
+            <div class="input-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+        <div class="links">
+            <a href="#" id="forgotPassword">Forgot your password?</a>
+            <br>
+            <a href="#" id="signUp">Don't have an account? Sign Up</a>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const loginForm = document.getElementById("loginForm");
+            const emailInput = document.getElementById("email");
+            const mobileInput = document.getElementById("mobile");
+            const emailError = document.getElementById("emailError");
+            const mobileError = document.getElementById("mobileError");
+            
+            // Email validation pattern
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            
+            // Mobile validation pattern (exactly 10 digits)
+            const mobilePattern = /^\d{10}$/;
+            
+            // Validate email on input
+            emailInput.addEventListener('input', function() {
+                if (!emailPattern.test(emailInput.value)) {
+                    emailError.style.display = 'block';
+                } else {
+                    emailError.style.display = 'none';
+                }
+            });
+            
+            // Validate mobile on input
+            mobileInput.addEventListener('input', function() {
+                // Only allow numbers
+                mobileInput.value = mobileInput.value.replace(/\D/g, '');
+                
+                if (!mobilePattern.test(mobileInput.value)) {
+                    mobileError.style.display = 'block';
+                } else {
+                    mobileError.style.display = 'none';
+                }
+            });
+            
+            loginForm.addEventListener("submit", function (event) {
+                event.preventDefault();
+                
+                const fname = document.getElementById("fname").value;
+                const lname = document.getElementById("lname").value;
+                const email = emailInput.value;
+                const password = document.getElementById("password").value;
+                const mobile = mobileInput.value;
+                
+                // Validate all fields
+                let isValid = true;
+                
+                if (!fname) {
+                    isValid = false;
+                    alert("Please enter your first name.");
+                    return;
+                }
+                
+                if (!lname) {
+                    isValid = false;
+                    alert("Please enter your last name.");
+                    return;
+                }
+                
+                if (!emailPattern.test(email)) {
+                    isValid = false;
+                    emailError.style.display = 'block';
+                    alert("Please enter a valid email address.");
+                    return;
+                }
+                
+                if (!mobilePattern.test(mobile)) {
+                    isValid = false;
+                    mobileError.style.display = 'block';
+                    alert("Please enter a valid 10-digit mobile number.");
+                    return;
+                }
+                
+                if (!password) {
+                    isValid = false;
+                    alert("Please enter your password.");
+                    return;
+                }
+                
+                if (isValid) {
+                    alert("You have successfully logged in, " + fname + "!");
+                    loginForm.reset();
+                    emailError.style.display = 'none';
+                    mobileError.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
